@@ -9,7 +9,7 @@ It achieves this by overriding the following keys to always use the black hole r
 ## Why would you want to do this?
 
 See [here](http://vimcasts.org/blog/2013/11/registers-the-good-the-bad-and-the-ugly-parts/).
-This plugin [already exists](https://github.com/svermeulen/vim-cutlass) in vimscript. I hope this version in lua will be more efficient :) 
+This plugin [already exists](https://github.com/svermeulen/vim-cutlass) in vimscript. I hope this version in lua will be more efficient :)
 
 ## Usage
 
@@ -36,7 +36,7 @@ Default : `nil`
 
 After setting up this plugin, all of these operations will simply delete and not cut. However, you will still want to have a key for 'cut', which you can add by setting the `cut_key` value when setting up the plugin. (`m` or `x` are recommended)
 
-This will create those bindings : 
+This will create those bindings :
 
 ```vimscript
 nnoremap m d
@@ -44,6 +44,10 @@ xnoremap m d
 nnoremap mm dd
 nnoremap M D
 ```
+
+## Integration
+
+If you have [svermeulen/vim-yoink](https://github.com/svermeulen/vim-yoink) installed, it will work seemlessly as original [svermeulen/vim-cutlass](https://github.com/svermeulen/vim-cutlass). Just follow the [integration instructions](https://github.com/svermeulen/vim-yoink#integration-with-vim-cutlass).
 
 ## Credits
 
