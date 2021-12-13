@@ -3,6 +3,7 @@ local cutlass = {}
 local function with_defaults(options)
   return {
     cut_key = options.cut_key or nil,
+    override_del = options.override_del or nil,
   }
 end
 
@@ -36,6 +37,10 @@ function cutlass.override_delete_and_change_bindings()
         vim.api.nvim_set_keymap(mode, override.lhs, override.rhs, keymap_opts)
       end
     end
+  end
+
+  if cutlass.options.override_del == true then
+    vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true })
   end
 end
 

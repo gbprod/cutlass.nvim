@@ -45,6 +45,12 @@ nnoremap mm dd
 nnoremap M D
 ```
 
+### `override_del`
+
+Default : `nil`
+
+By default, this plugin doesn't remap the `<Del>` key to use the blackhole register (and it will work as the old `x` key). By setting `override_del` to true, `<Del>` key will not cut any more and not afect your current yank.
+
 ## Integration
 
 If you have [svermeulen/vim-yoink](https://github.com/svermeulen/vim-yoink) installed, it will work seemlessly as original [svermeulen/vim-cutlass](https://github.com/svermeulen/vim-cutlass). Just follow the [integration instructions](https://github.com/svermeulen/vim-yoink#integration-with-vim-cutlass).
