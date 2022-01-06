@@ -41,6 +41,7 @@ function cutlass.override_delete_and_change_bindings()
 
   if cutlass.options.override_del == true then
     vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true })
+    vim.api.nvim_set_keymap("x", "<Del>", '"_x', { noremap = true })
   end
 end
 
