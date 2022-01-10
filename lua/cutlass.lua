@@ -8,6 +8,7 @@ local function with_defaults(options)
 end
 
 local keymap_opts = { noremap = true, silent = true }
+local map = vim.api.nvim_set_keymap
 
 function cutlass.setup(options)
   cutlass.options = with_defaults(options or {})
@@ -34,14 +35,14 @@ function cutlass.override_delete_and_change_bindings()
   for _, override in ipairs(overrides) do
     for _, mode in ipairs(override.modes) do
       if vim.fn.maparg(override.lhs, mode) == "" then
-        vim.api.nvim_set_keymap(mode, override.lhs, override.rhs, keymap_opts)
+        map(mode, override.lhs, override.rhs, keymap_opts)
       end
     end
   end
 
   if cutlass.options.override_del == true then
-    vim.api.nvim_set_keymap("n", "<Del>", '"_x', { noremap = true })
-    vim.api.nvim_set_keymap("x", "<Del>", '"_x', { noremap = true })
+    map("n", "<Del>", '"_x', keymap_opts)
+    map("x", "<Del>", '"_x', keymap_opts)
   end
 end
 
@@ -53,11 +54,11 @@ function cutlass.override_select_bindings()
   -- Add a map for every printable character to copy to black hole register
   for char_nr = 33, 126 do
     local char = vim.fn.nr2char(char_nr)
-    vim.api.nvim_set_keymap("s", char, '<c-o>"_c' .. escape_rhs(char), keymap_opts)
+    map("s", char, '<c-o>"_c' .. escape_rhs(char), keymap_opts)
   end
 
-  vim.api.nvim_set_keymap("s", "<bs>", '<c-o>"_c', keymap_opts)
-  vim.api.nvim_set_keymap("s", "<space>", '<c-o>"_c<space>', keymap_opts)
+  map("s", "<bs>", '<c-o>"_c', keymap_opts)
+  map("s", "<space>", '<c-o>"_c<space>', keymap_opts)
 end
 
 function cutlass.create_cut_bindings()
@@ -65,10 +66,10 @@ function cutlass.create_cut_bindings()
     return
   end
 
-  vim.api.nvim_set_keymap("n", cutlass.options.cut_key, "d", keymap_opts)
-  vim.api.nvim_set_keymap("x", cutlass.options.cut_key, "d", keymap_opts)
-  vim.api.nvim_set_keymap("n", cutlass.options.cut_key .. cutlass.options.cut_key, "dd", keymap_opts)
-  vim.api.nvim_set_keymap("n", string.upper(cutlass.options.cut_key), "D", keymap_opts)
+  map("n", cutlass.options.cut_key, "d", keymap_opts)
+  map("x", cutlass.options.cut_key, "d", keymap_opts)
+  map("n", cutlass.options.cut_key .. cutlass.options.cut_key, "dd", keymap_opts)
+  map("n", string.upper(cutlass.options.cut_key), "D", keymap_opts)
 end
 cutlass.options = nil
 
