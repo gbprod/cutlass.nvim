@@ -60,6 +60,8 @@ describe("Overrides select mode", function()
     assert(mappings["\\"].rhs, '<c-o>"_c\\')
     assert(mappings["|"])
     assert(mappings["|"].rhs, '<c-o>"_c|')
+
+    assert(mappings["<BS>"], '<c-o>"_c<BS>')
   end)
 end)
 

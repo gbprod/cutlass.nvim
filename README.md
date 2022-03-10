@@ -55,6 +55,15 @@ By default, this plugin doesn't remap the `<Del>` key to use the blackhole regis
 
 If you have [svermeulen/vim-yoink](https://github.com/svermeulen/vim-yoink) installed, it will work seemlessly as original [svermeulen/vim-cutlass](https://github.com/svermeulen/vim-cutlass). Just follow the [integration instructions](https://github.com/svermeulen/vim-yoink#integration-with-vim-cutlass).
 
+## FAQ
+
+**What if I don't want cutlass to remap the `s` key ?**
+
+When you're using plugins like [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim), you should not want cutlass to remap the `s` key. Cutlass only map keys if no mapping has been set before.
+So, just check that you are calling the `setup` function after the lightspeed's `setup` function.
+
+(This advice could apply to other plugins ;) )
+
 ## Credits
 
 This plugin is a lua version of [svermeulen/vim-cutlass](https://github.com/svermeulen/vim-cutlass) (based off of [vim-easyclip](https://github.com/svermeulen/vim-easyclip) and also [Drew Neil's ideas](https://github.com/nelstrom/vim-cutlass))
