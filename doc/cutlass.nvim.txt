@@ -8,6 +8,7 @@ Table of Contents                             *cutlass.nvim-table-of-contents*
   - Usage                                                 |cutlass.nvim-usage|
   - Configuration                                 |cutlass.nvim-configuration|
   - Integration                                     |cutlass.nvim-integration|
+  - FAQ                                                     |cutlass.nvim-faq|
   - Credits                                             |cutlass.nvim-credits|
 
 ==============================================================================
@@ -87,6 +88,18 @@ installed, it will work seemlessly as original svermeulen/vim-cutlass
 <https://github.com/svermeulen/vim-cutlass>. Just follow the integration
 instructions
 <https://github.com/svermeulen/vim-yoink#integration-with-vim-cutlass>.
+
+FAQ                                                         *cutlass.nvim-faq*
+
+**What if I don’t want cutlass to remap the `s` key ?**
+
+When you’re using plugins like ggandor/lightspeed.nvim
+<https://github.com/ggandor/lightspeed.nvim>, you should not want cutlass to
+remap the `s` key. Cutlass only map keys if no mapping has been set before. So,
+just check that you are calling the `setup` function after the lightspeed’s
+`setup` function.
+
+(This advice could apply to other plugins ;) )
 
 CREDITS                                                 *cutlass.nvim-credits*
 
