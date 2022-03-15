@@ -1,9 +1,19 @@
 local cutlass = {}
 
 local function with_defaults(options)
+  local flip = function(t)
+    local flipped = {}
+    for _, value in pairs(t) do
+      flipped[value] = true
+    end
+
+    return flipped
+  end
+
   return {
     cut_key = options.cut_key or nil,
     override_del = options.override_del or nil,
+    exclude = options.exclude and flip(options.exclude) or {},
   }
 end
 
@@ -34,7 +44,7 @@ function cutlass.override_delete_and_change_bindings()
 
   for _, override in ipairs(overrides) do
     for _, mode in ipairs(override.modes) do
-      if vim.fn.maparg(override.lhs, mode) == "" then
+      if not cutlass.options.exclude[mode .. override.lhs] and vim.fn.maparg(override.lhs, mode) == "" then
         map(mode, override.lhs, override.rhs, keymap_opts)
       end
     end
@@ -54,11 +64,18 @@ function cutlass.override_select_bindings()
   -- Add a map for every printable character to copy to black hole register
   for char_nr = 33, 126 do
     local char = vim.fn.nr2char(char_nr)
-    map("s", char, '<c-o>"_c' .. escape_rhs(char), keymap_opts)
+    if not cutlass.options.exclude["s" .. char] then
+      map("s", char, '<c-o>"_c' .. escape_rhs(char), keymap_opts)
+    end
   end
 
-  map("s", "<bs>", '<c-o>"_c', keymap_opts)
-  map("s", "<space>", '<c-o>"_c<space>', keymap_opts)
+  if not cutlass.options.exclude["s<bs>"] then
+    map("s", "<bs>", '<c-o>"_c', keymap_opts)
+  end
+
+  if not cutlass.options.exclude["s<space>"] then
+    map("s", "<space>", '<c-o>"_c<space>', keymap_opts)
+  end
 end
 
 function cutlass.create_cut_bindings()

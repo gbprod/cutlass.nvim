@@ -51,18 +51,40 @@ Default : `nil`
 
 By default, this plugin doesn't remap the `<Del>` key to use the blackhole register (and it will work as the old `x` key). By setting `override_del` to true, `<Del>` key will not cut any more and not afect your current yank.
 
+### `exclude`
+
+Default: `{}`
+
+For some reason, you may doesn't want `cutlass` to override some keys, you can exclude mappings to be set by adding this to the exclude option using format `"{mode}{key}"`.
+
+Eg. If you want to exclude `s` key in normal mode, sets `exclude` option to `{ "ns" }` ; If you want to exclude `<bs>` key in select mode, sets `exclude` option to `{ "s<bs>" }`.
+
 ## Integration
+
+<details>
+<summary><b>svermeulen/vim-yoink</b></summary>
 
 If you have [svermeulen/vim-yoink](https://github.com/svermeulen/vim-yoink) installed, it will work seemlessly as original [svermeulen/vim-cutlass](https://github.com/svermeulen/vim-cutlass). Just follow the [integration instructions](https://github.com/svermeulen/vim-yoink#integration-with-vim-cutlass).
 
-## FAQ
+</details>
 
-**What if I don't want cutlass to remap the `s` key ?**
+<details>
+<summary><b>ggandor/lightspeed.nvim</b></summary>
 
-When you're using plugins like [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim), you should not want cutlass to remap the `s` key. Cutlass only map keys if no mapping has been set before.
-So, just check that you are calling the `setup` function after the lightspeed's `setup` function.
+When you're using plugins like [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim), you should not want cutlass to remap the `s` key. You can do this using the `exclude` option:
 
-(This advice could apply to other plugins ;) )
+```lua
+use({
+  "gbprod/cutlass.nvim",
+  config = function()
+    require("cutlass").setup({
+        exclude = { "ns", "nS" },
+    })
+  end
+})
+```
+
+</details>
 
 ## Credits
 
