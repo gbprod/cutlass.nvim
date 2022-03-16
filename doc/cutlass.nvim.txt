@@ -8,7 +8,6 @@ Table of Contents                             *cutlass.nvim-table-of-contents*
   - Usage                                                 |cutlass.nvim-usage|
   - Configuration                                 |cutlass.nvim-configuration|
   - Integration                                     |cutlass.nvim-integration|
-  - FAQ                                                     |cutlass.nvim-faq|
   - Credits                                             |cutlass.nvim-credits|
 
 ==============================================================================
