@@ -10,6 +10,7 @@ end
 
 describe("Options should be set correctly", function()
   it("should take default values", function()
+    vim.cmd("mapclear")
     cutlass.setup()
     assert(cutlass.options.cut_key == nil)
   end)
@@ -17,6 +18,7 @@ end)
 
 describe("Overrides delete and change mappings", function()
   it("should map change and delete keys", function()
+    vim.cmd("mapclear")
     cutlass.setup()
     local mappings = get_mappings("n")
 
@@ -27,6 +29,7 @@ describe("Overrides delete and change mappings", function()
   end)
 
   it("should map change and delete keys in x mode", function()
+    vim.cmd("mapclear")
     cutlass.setup()
     local mappings = get_mappings("x")
 
@@ -37,9 +40,10 @@ describe("Overrides delete and change mappings", function()
   end)
 
   it("should not override already mapped keys", function()
+    vim.cmd("mapclear")
     vim.api.nvim_set_keymap("n", "d", "gv", { noremap = true, silent = true })
-
     cutlass.setup()
+
     local mappings = get_mappings("n")
 
     assert(mappings["d"].rhs == "gv")
@@ -48,6 +52,7 @@ end)
 
 describe("Overrides select mode", function()
   it("should overrides select mode", function()
+    vim.cmd("mapclear")
     cutlass.setup()
     local mappings = get_mappings("s")
 
@@ -67,6 +72,7 @@ end)
 
 describe("Create cut mappings", function()
   it("should map cut keys if setup", function()
+    vim.cmd("mapclear")
     cutlass.setup({
       cut_key = "m",
     })
@@ -76,5 +82,23 @@ describe("Create cut mappings", function()
     assert(mappings["m"].rhs, "d")
     assert(mappings["mm"])
     assert(mappings["mm"].rhs, "dd")
+  end)
+end)
+
+describe("Exclude option", function()
+  it("should not map excluded mapping", function()
+    vim.cmd("mapclear")
+    cutlass.setup({
+      exclude = { "ns", "nS", "sa", "s<bs>", "s<space>" },
+    })
+    local mappings = get_mappings("n")
+
+    assert(nil == mappings["s"])
+    assert(nil == mappings["S"])
+
+    mappings = get_mappings("s")
+    assert(nil == mappings["a"])
+    assert(nil == mappings["<bs>"])
+    assert(nil == mappings["<space>"])
   end)
 end)
