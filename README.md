@@ -1,34 +1,69 @@
-# cutlass.nvim
+# ✂️ cutlass.nvim
 
 [![Integration](https://github.com/gbprod/cutlass.nvim/actions/workflows/integration.yml/badge.svg)](https://github.com/gbprod/cutlass.nvim/actions/workflows/integration.yml)
 
 Cutlass overrides the delete operations to actually just delete and not affect the current yank.
 
-It achieves this by overriding the following keys to always use the black hole register: `c`, `cc`, `C`, `s`, `S`, `d`, `dd`, `D`, `x`, `X`. Note that if you have already mapped these keys to something else (like we do below with `x`) then it will not change it again.
+## ✨ Features
 
-## Why would you want to do this?
+It overrides the following keys to always use the black hole register: `c`, `cc`, `C`, `s`, `S`, `d`, `dd`, `D`, `x`, `X`.
+
+Note that if you have already mapped these keys to something else (like we do below with `x`) then it will not change it again.
+
+## ❔ Why would you want to do this?
 
 See [here](http://vimcasts.org/blog/2013/11/registers-the-good-the-bad-and-the-ugly-parts/).
 This plugin [already exists](https://github.com/svermeulen/vim-cutlass) in vimscript. I hope this version in lua will be more efficient :)
 
-## Usage
+## ⚡️ Requirements
 
-Requires neovim > 0.5.0.
+- Neovim >= 0.5.0
 
-Using [https://github.com/wbthomason/packer.nvim](packer):
+## 📦 Installation
+
+Install the plugin with your preferred package manager:
+
+### [packer](https://github.com/wbthomason/packer.nvim)
 
 ```lua
+-- Lua
 use({
   "gbprod/cutlass.nvim",
   config = function()
     require("cutlass").setup({
-        cut_key = "m"
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
     })
   end
 })
 ```
 
-## Configuration
+### [vim-plug](https://github.com/junegunn/vim-plug)
+
+```vim
+" Vim Script
+Plug 'gbprod/cutlass.nvim'
+lua << EOF
+  require("cutlass").setup({
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+  })
+EOF
+```
+
+## ⚙️ Configuration
+
+Cutlass comes with the following defaults:
+
+```lua
+{
+  cut_key = nil,
+  override_del = nil,
+  exclude = {},
+}
+```
 
 ### `cut_key`
 
@@ -59,7 +94,7 @@ For some reason, you may doesn't want `cutlass` to override some keys, you can e
 
 Eg. If you want to exclude `s` key in normal mode, sets `exclude` option to `{ "ns" }` ; If you want to exclude `<bs>` key in select mode, sets `exclude` option to `{ "s<bs>" }`.
 
-## Integration
+## 🤝 Integration
 
 <details>
 <summary><b>svermeulen/vim-yoink</b></summary>
@@ -86,7 +121,7 @@ use({
 
 </details>
 
-## Credits
+## 🎉 Credits
 
 This plugin is a lua version of [svermeulen/vim-cutlass](https://github.com/svermeulen/vim-cutlass) (based off of [vim-easyclip](https://github.com/svermeulen/vim-easyclip) and also [Drew Neil's ideas](https://github.com/nelstrom/vim-cutlass))
 
