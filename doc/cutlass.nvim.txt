@@ -5,7 +5,7 @@ Table of Contents                             *cutlass.nvim-table-of-contents*
 
 1. ✂️ cutlass.nvim                      |cutlass.nvim-✂️-cutlass.nvim|
   - ✨ Features                                   |cutlass.nvim-✨-features|
-  - ❔ Why would you want to do this?|cutlass.nvim-❔-why-would-you-want-to-do-this?|
+  - 🤔 Why would you want to do this?|cutlass.nvim-🤔-why-would-you-want-to-do-this?|
   - ⚡️ Requirements                     |cutlass.nvim-⚡️-requirements|
   - 📦 Installation                         |cutlass.nvim-📦-installation|
   - ⚙️ Configuration                   |cutlass.nvim-⚙️-configuration|
@@ -16,9 +16,10 @@ Table of Contents                             *cutlass.nvim-table-of-contents*
 1. ✂️ cutlass.nvim                      *cutlass.nvim-✂️-cutlass.nvim*
 
 <img
-src='https://github.com/gbprod/cutlass.nvim/actions/workflows/integration.yml/badge.svg'
+src='https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua'
+title=''/> <img
+src='https://img.shields.io/github/workflow/status/gbprod/cutlass.nvim/Integration?style=for-the-badge'
 title=''/>
-<https://github.com/gbprod/cutlass.nvim/actions/workflows/integration.yml>
 
 Cutlass overrides the delete operations to actually just delete and not affect
 the current yank.
@@ -31,7 +32,7 @@ It overrides the following keys to always use the black hole register: `c`,
 Note that if you have already mapped these keys to something else (like we do
 below with `x`) then it will not change it again.
 
-❔ WHY WOULD YOU WANT TO DO THIS?*cutlass.nvim-❔-why-would-you-want-to-do-this?*
+🤔 WHY WOULD YOU WANT TO DO THIS?*cutlass.nvim-🤔-why-would-you-want-to-do-this?*
 
 See here
 <http://vimcasts.org/blog/2013/11/registers-the-good-the-bad-and-the-ugly-parts/>.

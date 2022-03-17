@@ -1,6 +1,7 @@
 # ✂️ cutlass.nvim
 
-[![Integration](https://github.com/gbprod/cutlass.nvim/actions/workflows/integration.yml/badge.svg)](https://github.com/gbprod/cutlass.nvim/actions/workflows/integration.yml)
+![Lua](https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/gbprod/cutlass.nvim/Integration?style=for-the-badge)
 
 Cutlass overrides the delete operations to actually just delete and not affect the current yank.
 
@@ -10,7 +11,7 @@ It overrides the following keys to always use the black hole register: `c`, `cc`
 
 Note that if you have already mapped these keys to something else (like we do below with `x`) then it will not change it again.
 
-## ❔ Why would you want to do this?
+## 🤔 Why would you want to do this?
 
 See [here](http://vimcasts.org/blog/2013/11/registers-the-good-the-bad-and-the-ugly-parts/).
 This plugin [already exists](https://github.com/svermeulen/vim-cutlass) in vimscript. I hope this version in lua will be more efficient :)
