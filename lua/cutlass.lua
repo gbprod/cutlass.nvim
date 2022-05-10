@@ -31,12 +31,10 @@ end
 function cutlass.override_delete_and_change_bindings()
   local overrides = {
     { lhs = "c", rhs = '"_c', modes = { "n", "x" } },
-    { lhs = "cc", rhs = '"_S', modes = { "n" } },
     { lhs = "C", rhs = '"_C', modes = { "n", "x" } },
     { lhs = "s", rhs = '"_s', modes = { "n", "x" } },
     { lhs = "S", rhs = '"_S', modes = { "n", "x" } },
     { lhs = "d", rhs = '"_d', modes = { "n", "x" } },
-    { lhs = "dd", rhs = '"_dd', modes = { "n" } },
     { lhs = "D", rhs = '"_D', modes = { "n", "x" } },
     { lhs = "x", rhs = '"_x', modes = { "n", "x" } },
     { lhs = "X", rhs = '"_X', modes = { "n", "x" } },
