@@ -29,21 +29,10 @@ function cutlass.setup(options)
 end
 
 function cutlass.override_delete_and_change_bindings()
-  local overrides = {
-    { lhs = "c", rhs = '"_c', modes = { "n", "x" } },
-    { lhs = "C", rhs = '"_C', modes = { "n", "x" } },
-    { lhs = "s", rhs = '"_s', modes = { "n", "x" } },
-    { lhs = "S", rhs = '"_S', modes = { "n", "x" } },
-    { lhs = "d", rhs = '"_d', modes = { "n", "x" } },
-    { lhs = "D", rhs = '"_D', modes = { "n", "x" } },
-    { lhs = "x", rhs = '"_x', modes = { "n", "x" } },
-    { lhs = "X", rhs = '"_X', modes = { "n", "x" } },
-  }
-
-  for _, override in ipairs(overrides) do
-    for _, mode in ipairs(override.modes) do
-      if not cutlass.options.exclude[mode .. override.lhs] and vim.fn.maparg(override.lhs, mode) == "" then
-        map(mode, override.lhs, override.rhs, keymap_opts)
+  for _, mode in pairs({ "x", "n" }) do
+    for _, lhs in pairs({ "c", "C", "s", "S", "d", "D", "x", "X" }) do
+      if not cutlass.options.exclude[mode .. lhs] and vim.fn.maparg(lhs, mode) == "" then
+        map(mode, lhs, '"_' .. lhs, keymap_opts)
       end
     end
   end
@@ -55,15 +44,11 @@ function cutlass.override_delete_and_change_bindings()
 end
 
 function cutlass.override_select_bindings()
-  local escape_rhs = function(char)
-    return char == "\\" and "\\" .. char or char
-  end
-
   -- Add a map for every printable character to copy to black hole register
   for char_nr = 33, 126 do
     local char = vim.fn.nr2char(char_nr)
     if not cutlass.options.exclude["s" .. char] then
-      map("s", char, '<c-o>"_c' .. escape_rhs(char), keymap_opts)
+      map("s", char, '<c-o>"_c' .. char == "\\" and "\\\\" or char, keymap_opts)
     end
   end
 
@@ -86,6 +71,5 @@ function cutlass.create_cut_bindings()
   map("n", cutlass.options.cut_key .. cutlass.options.cut_key, "dd", keymap_opts)
   map("n", string.upper(cutlass.options.cut_key), "D", keymap_opts)
 end
-cutlass.options = nil
 
 return cutlass
