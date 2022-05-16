@@ -7,7 +7,7 @@ Cutlass overrides the delete operations to actually just delete and not affect t
 
 ## ✨ Features
 
-It overrides the following keys to always use the black hole register: `c`, `cc`, `C`, `s`, `S`, `d`, `dd`, `D`, `x`, `X`.
+It overrides the following keys to always use the black hole register: `c`, `C`, `s`, `S`, `d`, `D`, `x`, `X`.
 
 Note that if you have already mapped these keys to something else (like we do below with `x`) then it will not change it again.
 
