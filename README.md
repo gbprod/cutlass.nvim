@@ -18,7 +18,7 @@ This plugin [already exists](https://github.com/svermeulen/vim-cutlass) in vimsc
 
 ## ⚡️ Requirements
 
-- Neovim >= 0.5.0
+- Neovim >= 0.7.0
 
 ## 📦 Installation
 
