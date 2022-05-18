@@ -18,7 +18,7 @@ local function with_defaults(options)
 end
 
 local keymap_opts = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 
 function cutlass.setup(options)
   cutlass.options = with_defaults(options or {})
