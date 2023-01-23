@@ -1,7 +1,7 @@
 # ✂️ cutlass.nvim
 
 ![Lua](https://img.shields.io/badge/Made%20with%20Lua-blueviolet.svg?style=for-the-badge&logo=lua)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/gbprod/cutlass.nvim/Integration?style=for-the-badge)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/gbprod/cutlass.nvim/integration.yml?branch=main&style=for-the-badge)](https://github.com/gbprod/cutlass.nvim/actions/workflows/integration.yml)
 
 Cutlass overrides the delete operations to actually just delete and not affect the current yank.
 
