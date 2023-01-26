@@ -141,9 +141,9 @@ If you have [svermeulen/vim-yoink](https://github.com/svermeulen/vim-yoink) inst
 </details>
 
 <details>
-<summary><b>ggandor/lightspeed.nvim</b></summary>
+<summary><b>ggandor/lightspeed.nvim and ggandor/leap.nvim</b></summary>
 
-When you're using plugins like [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim), you should not want cutlass to remap the `s` key. You can do this using the `exclude` option:
+When you're using plugins like [ggandor/lightspeed.nvim](https://github.com/ggandor/lightspeed.nvim) or [ggandor/leap.nvim](https://github.com/ggandor/leap.nvim), you should not want cutlass to remap the `s` key. You can do this using the `exclude` option:
 
 ```lua
 use({
