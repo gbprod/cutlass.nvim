@@ -65,6 +65,11 @@ Cutlass comes with the following defaults:
   cut_key = nil,
   override_del = nil,
   exclude = {},
+  registers = {
+    select = "_",
+    delete = "_",
+    change = "_",
+  },
 }
 ```
 
@@ -96,6 +101,35 @@ Default: `{}`
 For some reason, you may doesn't want `cutlass` to override some keys, you can exclude mappings to be set by adding this to the exclude option using format `"{mode}{key}"`.
 
 Eg. If you want to exclude `s` key in normal mode, sets `exclude` option to `{ "ns" }` ; If you want to exclude `<bs>` key in select mode, sets `exclude` option to `{ "s<bs>" }`.
+
+### `registers`
+
+Default:
+
+```
+{
+  select = "_",
+  delete = "_",
+  change = "_",
+}
+```
+
+Installing `cutlass.nvim` will use blackhole register fordelete, change and select actions to.
+But maybe you want to redirect to a specific register, this option allows you to
+choose the register to use for each action.
+
+E.g. using configuration above will use `s` register for select, `d` for delete
+and `c` for change:
+
+```lua
+{
+  registers = {
+    select = "s",
+    delete = "d",
+    change = "c",
+  },
+}
+```
 
 ## 🤝 Integration
 
