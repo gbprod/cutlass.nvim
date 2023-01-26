@@ -14,6 +14,11 @@ local function with_defaults(options)
     cut_key = options.cut_key or nil,
     override_del = options.override_del or nil,
     exclude = options.exclude and flip(options.exclude) or {},
+    registers = vim.tbl_extend("force", {
+      select = "_",
+      delete = "_",
+      change = "_",
+    }, options.registers or {}),
   }
 end
 
@@ -30,16 +35,21 @@ end
 
 function cutlass.override_delete_and_change_bindings()
   for _, mode in pairs({ "x", "n" }) do
-    for _, lhs in pairs({ "c", "C", "s", "S", "d", "D", "x", "X" }) do
+    for _, lhs in pairs({ "c", "C", "s", "S" }) do
       if not cutlass.options.exclude[mode .. lhs] and vim.fn.maparg(lhs, mode) == "" then
-        map(mode, lhs, '"_' .. lhs, keymap_opts)
+        map(mode, lhs, string.format('"%s%s', cutlass.options.registers.change, lhs), keymap_opts)
+      end
+    end
+    for _, lhs in pairs({ "d", "D", "x", "X" }) do
+      if not cutlass.options.exclude[mode .. lhs] and vim.fn.maparg(lhs, mode) == "" then
+        map(mode, lhs, string.format('"%s%s', cutlass.options.registers.delete, lhs), keymap_opts)
       end
     end
   end
 
   if cutlass.options.override_del == true then
-    map("n", "<Del>", '"_x', keymap_opts)
-    map("x", "<Del>", '"_x', keymap_opts)
+    map("n", "<Del>", string.format('"%sx', cutlass.options.registers.delete), keymap_opts)
+    map("x", "<Del>", string.format('"%sx', cutlass.options.registers.delete), keymap_opts)
   end
 end
 
@@ -48,16 +58,21 @@ function cutlass.override_select_bindings()
   for char_nr = 33, 126 do
     local char = vim.fn.nr2char(char_nr)
     if not cutlass.options.exclude["s" .. char] then
-      map("s", char, '<c-o>"_c' .. char == "\\" and "\\\\" or char, keymap_opts)
+      map(
+        "s",
+        char,
+        string.format('<c-o>"%sc%s', cutlass.options.registers.select, char == "\\" and "\\\\" or char),
+        keymap_opts
+      )
     end
   end
 
   if not cutlass.options.exclude["s<bs>"] then
-    map("s", "<bs>", '<c-o>"_c', keymap_opts)
+    map("s", "<bs>", string.format('<c-o>"%sc', cutlass.options.registers.select), keymap_opts)
   end
 
   if not cutlass.options.exclude["s<space>"] then
-    map("s", "<space>", '<c-o>"_c<space>', keymap_opts)
+    map("s", "<space>", string.format('<c-o>"%sc<space>', cutlass.options.registers.select), keymap_opts)
   end
 end
 

@@ -23,7 +23,7 @@ describe("Overrides delete and change mappings", function()
     local mappings = get_mappings("n")
 
     assert(mappings["c"])
-    assert(mappings["d"].rhs == '"_d')
+    assert.are.equals('"_d', mappings["d"].rhs)
     assert(mappings["D"].silent)
     assert(mappings["x"].noremap)
   end)
@@ -34,7 +34,7 @@ describe("Overrides delete and change mappings", function()
     local mappings = get_mappings("x")
 
     assert(mappings["c"])
-    assert(mappings["d"].rhs == '"_d')
+    assert.are.equals('"_d', mappings["d"].rhs)
     assert(mappings["D"].silent)
     assert(mappings["x"].noremap)
   end)
@@ -46,7 +46,7 @@ describe("Overrides delete and change mappings", function()
 
     local mappings = get_mappings("n")
 
-    assert(mappings["d"].rhs == "gv")
+    assert.are.equals("gv", mappings["d"].rhs)
   end)
 end)
 
@@ -57,16 +57,16 @@ describe("Overrides select mode", function()
     local mappings = get_mappings("s")
 
     assert(mappings["a"])
-    assert(mappings["a"].rhs, '<c-o>"_ca')
+    assert.are.equals('<C-O>"_ca', mappings["a"].rhs)
     assert(mappings["Z"])
-    assert(mappings["Z"].rhs, '<c-o>"_cZ')
+    assert.are.equals('<C-O>"_cZ', mappings["Z"].rhs)
 
     assert(mappings["\\"])
-    assert(mappings["\\"].rhs, '<c-o>"_c\\')
+    assert.are.equals('<C-O>"_c\\\\', mappings["\\"].rhs)
     assert(mappings["|"])
-    assert(mappings["|"].rhs, '<c-o>"_c|')
+    assert.are.equals('<C-O>"_c|', mappings["|"].rhs)
 
-    assert(mappings["<BS>"], '<c-o>"_c<BS>')
+    assert.are.equals('<C-O>"_c', mappings["<BS>"].rhs)
   end)
 end)
 
@@ -100,5 +100,24 @@ describe("Exclude option", function()
     assert(nil == mappings["a"])
     assert(nil == mappings["<bs>"])
     assert(nil == mappings["<space>"])
+  end)
+end)
+
+describe("Registers option", function()
+  it("should not map excluded mapping", function()
+    vim.cmd("mapclear")
+    cutlass.setup({
+      registers = {
+        select = "s",
+        delete = "d",
+        change = "c",
+      },
+    })
+    local mappings = get_mappings("n")
+    assert('"dd', mappings["d"].rhs)
+    assert('"cc', mappings["c"].rhs)
+
+    mappings = get_mappings("s")
+    assert.are.equals('<C-O>"scd', mappings["d"].rhs)
   end)
 end)
