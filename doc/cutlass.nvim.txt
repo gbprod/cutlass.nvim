@@ -94,6 +94,11 @@ Cutlass comes with the following defaults:
       cut_key = nil,
       override_del = nil,
       exclude = {},
+      registers = {
+        select = "_",
+        delete = "_",
+        change = "_",
+      },
     }
 <
 
@@ -137,6 +142,37 @@ Eg. If you want to exclude `s` key in normal mode, sets `exclude` option to `{
 "ns" }` ; If you want to exclude `<bs>` key in select mode, sets `exclude`
 option to `{ "s<bs>" }`.
 
+`REGISTERS` ~
+
+Default:
+
+>
+    {
+      select = "_",
+      delete = "_",
+      change = "_",
+    }
+<
+
+
+Installing `cutlass.nvim` will use blackhole register fordelete, change and
+select actions to. But maybe you want to redirect to a specific register, this
+option allows you to choose the register to use for each action.
+
+E.g. using configuration above will use `s` register for select, `d` for delete
+and `c` for change:
+
+>
+    {
+      registers = {
+        select = "s",
+        delete = "d",
+        change = "c",
+      },
+    }
+<
+
+
 🤝 INTEGRATION                               *cutlass.nvim-🤝-integration*
 
 svermeulen/vim-yoink ~
@@ -147,11 +183,12 @@ installed, it will work seemlessly as original svermeulen/vim-cutlass
 instructions
 <https://github.com/svermeulen/vim-yoink#integration-with-vim-cutlass>.
 
-ggandor/lightspeed.nvim ~
+ggandor/lightspeed.nvim and ggandor/leap.nvim ~
 
 When you’re using plugins like ggandor/lightspeed.nvim
-<https://github.com/ggandor/lightspeed.nvim>, you should not want cutlass to
-remap the `s` key. You can do this using the `exclude` option:
+<https://github.com/ggandor/lightspeed.nvim> or ggandor/leap.nvim
+<https://github.com/ggandor/leap.nvim>, you should not want cutlass to remap
+the `s` key. You can do this using the `exclude` option:
 
 >
     use({
