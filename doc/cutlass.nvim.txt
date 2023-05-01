@@ -52,6 +52,21 @@ vimscript. I hope this version in lua will be more efficient :)
 Install the plugin with your preferred package manager:
 
 
+LAZY ~
+
+>lua
+    -- Lua
+    {
+      "gbprod/cutlass.nvim",
+      opts = {
+          -- your configuration comes here
+          -- or don't set opts to use the default settings
+          -- refer to the configuration section below
+        }
+    }
+<
+
+
 PACKER ~
 
 >lua
@@ -76,9 +91,9 @@ VIM-PLUG ~
     Plug 'gbprod/cutlass.nvim'
     lua << EOF
       require("cutlass").setup({
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
+        " your configuration comes here
+        " or leave it empty to use the default settings
+        " refer to the configuration section below
       })
     EOF
 <
