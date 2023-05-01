@@ -26,6 +26,20 @@ This plugin [already exists](https://github.com/svermeulen/vim-cutlass) in vimsc
 
 Install the plugin with your preferred package manager:
 
+### [lazy](https://github.com/folke/lazy.nvim)
+
+```lua
+-- Lua
+{
+  "gbprod/cutlass.nvim",
+  opts = {
+      -- your configuration comes here
+      -- or don't set opts to use the default settings
+      -- refer to the configuration section below
+    }
+}
+```
+
 ### [packer](https://github.com/wbthomason/packer.nvim)
 
 ```lua
