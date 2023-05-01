@@ -92,7 +92,7 @@ nnoremap M D
 
 Default : `nil`
 
-By default, this plugin doesn't remap the `<Del>` key to use the blackhole register (and it will work as the old `x` key). By setting `override_del` to true, `<Del>` key will not cut any more and not afect your current yank.
+By default, this plugin doesn't remap the `<Del>` key to use the blackhole register (and it will work as the old `x` key). By setting `override_del` to true, `<Del>` key will not cut any more and not affect your current yank.
 
 ### `exclude`
 
@@ -114,7 +114,7 @@ Default:
 }
 ```
 
-Installing `cutlass.nvim` will use blackhole register fordelete, change and select actions to.
+Installing `cutlass.nvim` will use blackhole register for delete, change and select actions.
 But maybe you want to redirect to a specific register, this option allows you to
 choose the register to use for each action.
 
