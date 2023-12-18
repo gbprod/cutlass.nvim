@@ -132,7 +132,7 @@ Installing `cutlass.nvim` will use blackhole register for delete, change and sel
 But maybe you want to redirect to a specific register, this option allows you to
 choose the register to use for each action.
 
-E.g. using configuration above will use `s` register for select, `d` for delete
+E.g. using configuration below will use `s` register for select, `d` for delete
 and `c` for change:
 
 ```lua
