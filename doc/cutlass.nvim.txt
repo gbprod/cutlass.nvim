@@ -40,7 +40,6 @@ vimscript. I hope this version in lua will be more efficient :)
 
 ⚡️ REQUIREMENTS     *cutlass.nvim-✂️-cutlass.nvim-⚡️-requirements*
 
-
 - Neovim >= 0.7.0
 
 (For Neovim 0.5 compatibility, you can use the compat-0.5
@@ -174,7 +173,7 @@ Installing `cutlass.nvim` will use blackhole register for delete, change and
 select actions. But maybe you want to redirect to a specific register, this
 option allows you to choose the register to use for each action.
 
-E.g. using configuration above will use `s` register for select, `d` for delete
+E.g. using configuration below will use `s` register for select, `d` for delete
 and `c` for change:
 
 >lua
