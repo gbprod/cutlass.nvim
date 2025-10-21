@@ -81,10 +81,14 @@ function cutlass.create_cut_bindings()
     return
   end
 
-  map("n", cutlass.options.cut_key, "d", keymap_opts)
-  map("x", cutlass.options.cut_key, "d", keymap_opts)
-  map("n", cutlass.options.cut_key .. cutlass.options.cut_key, "dd", keymap_opts)
-  map("n", string.upper(cutlass.options.cut_key), "D", keymap_opts)
+  local keymap_opts_with_desc = function(desc)
+    return vim.tbl_extend("force", keymap_opts, { desc = desc })
+  end
+
+  map("n", cutlass.options.cut_key, "d", keymap_opts_with_desc("Cut"))
+  map("x", cutlass.options.cut_key, "d", keymap_opts_with_desc("Cut"))
+  map("n", cutlass.options.cut_key .. cutlass.options.cut_key, "dd", keymap_opts_with_desc("Cut line"))
+  map("n", string.upper(cutlass.options.cut_key), "D", keymap_opts_with_desc("Cut until EOL"))
 end
 
 return cutlass
