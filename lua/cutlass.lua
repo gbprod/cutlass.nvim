@@ -42,7 +42,11 @@ function cutlass.override_delete_and_change_bindings()
     end
     for _, lhs in pairs({ "d", "D", "x", "X" }) do
       if not cutlass.options.exclude[mode .. lhs] and vim.fn.maparg(lhs, mode) == "" then
-        map(mode, lhs, string.format('"%s%s', cutlass.options.registers.delete, lhs), keymap_opts)
+        if lhs == "d" or lhs == "D" then
+          map(mode, lhs, string.format('"%s%s', cutlass.options.registers.delete, lhs), keymap_opts)
+        else
+          map(mode, lhs, "@=" .. string.format('\'"%s%s\'<CR>', cutlass.options.registers.delete, lhs), keymap_opts)
+        end
       end
     end
   end
